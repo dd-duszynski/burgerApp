@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as burgerBuilderActions from '../../store/actions/index';
+import * as actions from '../../store/actions/index';
 
 import Aux from '../../hoc/Auxillary/Auxillary';
 import Burger from '../../components/Burger/Burger';
@@ -16,8 +16,7 @@ class BurgerBuilder extends Component {
 		purchasing: false,
 	};
 	componentDidMount() {
-      console.log('[BurgerBuilder] componentDidMount', this.props);
-      this.props.onInitIngredients()
+		this.props.onInitIngredients();
 	}
 
 	updatePurchaseState(ingredients) {
@@ -27,8 +26,8 @@ class BurgerBuilder extends Component {
 			})
 			.reduce((sum, el) => {
 				return sum + el;
-         }, 0);
-         return sum > 0
+			}, 0);
+		return sum > 0;
 	}
 	purchaseHandler = () => {
 		this.setState({ purchasing: true });
@@ -37,7 +36,8 @@ class BurgerBuilder extends Component {
 		this.setState({ purchasing: false });
 	};
 	purchaseContinueHandler = () => {
-      this.props.history.push('/checkout');
+		this.props.onInitPurchase();
+		this.props.history.push('/checkout');
 	};
 
 	render() {
@@ -83,19 +83,21 @@ class BurgerBuilder extends Component {
 		);
 	}
 }
+
 const mapStateToProps = (state) => {
 	return {
 		ings: state.burgerBuilder.ingredients,
-      price: state.burgerBuilder.totalPrice,
-      error: state.burgerBuilder.error
+		price: state.burgerBuilder.totalPrice,
+		error: state.burgerBuilder.error,
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onIngredientAdded: (ingName) => dispatch(burgerBuilderActions.addIngredient(ingName)),
-      onIngredientRemoved: (ingName) => dispatch(burgerBuilderActions.removeIngredient(ingName)),
-      onInitIngredients: () => dispatch(burgerBuilderActions.initIngredients())
+		onIngredientAdded: (ingName) => dispatch(actions.addIngredient(ingName)),
+		onIngredientRemoved: (ingName) => dispatch(actions.removeIngredient(ingName)),
+		onInitIngredients: () => dispatch(actions.initIngredients()),
+		onInitPurchase: () => dispatch(actions.purchaseInit()),
 	};
 };
 
