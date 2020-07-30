@@ -18,17 +18,18 @@ class App extends Component {
 			<Switch>
 				<Route path='/auth' component={Auth} />
 				<Route path='/' exact component={BurgerBuilder} />
-            <Redirect to='/'/>
+				<Redirect to='/' />
 			</Switch>
 		);
 		if (this.props.isAuthenticated) {
-         routes = (
-            <Switch>
+			routes = (
+				<Switch>
 					<Route path='/checkout' component={Checkout} />
 					<Route path='/orders' component={Orders} />
 					<Route path='/logout' component={Logout} />
+					<Route path='/auth' component={Auth} />
 					<Route path='/' exact component={BurgerBuilder} />
-               <Redirect to='/'/>
+					<Redirect to='/' />
 				</Switch>
 			);
 		}
