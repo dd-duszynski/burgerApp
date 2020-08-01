@@ -6,11 +6,9 @@ import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSumm
 
 class Checkout extends Component {
 	checkoutCancelledHandler = () => {
-		console.log('checkoutCancelled');
 		this.props.history.goBack();
 	};
 	checkoutContinuedHandler = () => {
-		console.log('checkoutContinued');
 		this.props.history.replace('/checkout/contact-data');
 	};
 	render() {

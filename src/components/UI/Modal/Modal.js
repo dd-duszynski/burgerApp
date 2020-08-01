@@ -13,9 +13,6 @@ class Modal extends Component{
         // poniżej krótsza wersja ------->
         // return nextProps.show !== this.props.show;
     }
-    componentDidUpdate(){
-        console.log('[Modal] DidUpdate')
-    }
 
     render(){
         return(
