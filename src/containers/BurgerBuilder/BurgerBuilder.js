@@ -11,7 +11,7 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../store/actions/index';
 import axios from '../../axios-orders';
 
-class BurgerBuilder extends Component {
+export class BurgerBuilder extends Component {
 	state = {
 		purchasing: false,
 	};
@@ -58,7 +58,7 @@ class BurgerBuilder extends Component {
 		}
 		let orderSummary = null;
 		let burger = this.props.error ? <p>Ingredients can't be loaded!</p> : <Spinner />;
-
+      
 		if (this.props.ings) {
 			burger = (
 				<Aux>
